@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+   </head>
+<body>
+        <h3>db내용</h3>
+        <div>
+
+          <% for(var i = 0; i< result.length; i++){%> 
+              <a> 
+                <!-- //<%= result[i] %>
+                //오브젝트 로 뜨게됨. -->
+                <%= result[i].Name %>
+                <!-- //해당 어트리뷰트 적어야지 애가 뜨게됨. -->
+              </a>
+              &#09;&#09;&#09;&#09;&#09;
+              <a><%= result[i].Tel %>
+              &#09;&#09;&#09;&#09;&#09;
+              <%= result[i].Big_col %>
+              &#09;&#09;&#09;&#09;&#09;
+              <%= result[i].Mid_col %>
+              &#09;&#09;&#09;&#09;&#09;
+              <%= result[i].Small_col %>
+              &#09;&#09;&#09;&#09;&#09;
+              <%= result[i].City %></a>        
+            </br>
+          <% }; %>
+        </div>
+        
+
+</body>
+</html>

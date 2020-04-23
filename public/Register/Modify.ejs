@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>비밀번호 변경</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="main">
+
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <form method="POST" action="Modify.ejs" class="register-form" id="register-form">
+                        
+                    <div class="signup-content">
+                        <% if(passagain){%>
+                            <script>alert("동일하지 않은 비밀번호입니다.")</script>
+                        <%}%>
+                        <% if(insertpassagain){%>
+                            <script>alert("비밀번호가 올바르지 않습니다.")</script>
+                        <%}%>
+                        <div class="signup-image">
+                            <figure><img src="images/Modify.jpg" alt="sing up image"></figure>
+                            <input type="submit" name="choice" 
+                                style="text-decoration: underline;" class="signup-image-link" id="cancel_Membership"
+                                value="회원 탈퇴" />
+                        </div>
+                        <div class="signup-form">
+                            <h2 class="form-title">비밀번호 변경</h2>
+
+                            <div class="form-group">
+                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="pass" id="pass" placeholder="현재 비밀번호" />
+                            </div>
+                            <div class="form-group">
+                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="new_pass" id="new_pass" placeholder="새 비밀번호" />
+                            </div>
+                            <div class="form-group">
+                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="password" name="re_pass" id="re_pass" placeholder="새 비밀번호 확인" />
+                            </div>
+                            <div id="chkNotice"></div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="choice" class="form-submit" value="확인" />
+                                <a href="/views/index.ejs" class="form-submit" style="text-decoration:none;">취소</a>
+                            </div>
+                </form>
+            </div>
+    </div>
+    </div>
+    </section>
+    </div>
+
+    <!-- JS -->
+    <script src="/views/Register/vendor/jquery/jquery.min.js"></script>
+    <script src="/views/Register/js/main.js"></script>
+</body>
+
+</html>

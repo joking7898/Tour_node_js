@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> 회원가입</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="main">
+
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <%if(insertagain){%>
+                        <script>alert("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.")</script>
+                    <%}%>
+                    <%if(blank) {%>
+                        <script>alert("필수 항목을 모두 입력하세요.")</script>
+                    <%}%>
+                    <% if(idagain){%>
+                        <script>alert("아이디가 중복입니다.")</script>
+                    <%}%>
+                    <% if(passagain){%>
+                        <script>alert("동일하지 않은 비밀번호입니다.")</script>
+                    <%}%>
+                    <div class="signup-form">
+                        <h2 class="form-title">회원가입</h2>
+                        <form method="POST" class="register-form" id="register-form">
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="id" id="id" placeholder="아이디"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" id="email" placeholder="이메일"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="pass" id="pass1" placeholder="비밀번호"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="password" name="re_pass" id="re_pass1" placeholder="비밀번호 재확인"/>
+                            </div>
+                            <div id="chkNotice"></div>
+                            <div class="form-group">
+                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                                <label for="agree-term" class="label-agree-term"><span><span></span></span>모든 약관에 동의합니다. <a href="#" class="term-service"> 서비스 약관</a></label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="가입하기"/>
+                                <a href="/views/index.ejs" class="form-submit" style="text-decoration:none;">취소</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="images/signup-image2.jpg" alt="sing up image"></figure>
+                        <a href="Login.ejs" class="signup-image-link">이미 회원입니다.</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- JS -->
+    <script src="/views/Register/vendor/jquery/jquery.min.js"></script>
+    <script src="/views/Register/js/main.js"></script>
+</body>
+</html>

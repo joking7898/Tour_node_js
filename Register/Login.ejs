@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>로그인</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="/views/Register/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="/views/Register/css/style.css">
+</head>
+<body>
+
+    <div class="main">
+        <!-- Sing in  Form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="/Register/images/signin-image2.jpg" alt="sing up image"></figure>
+                        <a href="/Register/Register_user.ejs?#" class="signup-image-link">회원가입</a>
+                    </div>
+                    <%if(tryagain){%>
+                        <script>alert("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.")</script>
+                    <%}%>
+                    <% if(succses){%>
+                        <script>alert("회원가입이 완료되었습니다.")</script>
+                    <%}%> 
+
+                    <div class="signin-form">
+                        <h2 class="form-title">로그인</h2>
+                        <form method="POST" class="register-form" id="login-form">
+                            <div class="form-group">
+                                <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="id" id="id" placeholder="아이디"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="your_pass" id="your_pass" placeholder="비밀번호"/>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="로그인"/>
+                                <a href="../views/index.ejs?#" class="form-submit" style="text-decoration:none;">취소</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="/views/Register/vendor/jquery/jquery.min.js"></script>
+    <script src="/views/Register/js/main.js"></script>
+</body>
+</html>
