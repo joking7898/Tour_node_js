@@ -23,6 +23,9 @@ app.use('/views/rooms.ejs',treavel_list);
 var index_router = require('./router/index.js')
 app.use('/views/index.ejs',index_router );
 
+var Single_travel = require('./router/Single_travel.js')
+app.use('/views/rooms-single.ejs',Single_travel);
+
 var Register_router = require('./router/Register_user.js')
 app.use('/Register',Register_router );
 
