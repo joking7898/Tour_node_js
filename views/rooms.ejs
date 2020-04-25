@@ -84,14 +84,13 @@
 								<div class="col-sm col-md-6 col-lg-4 ftco-animate">
 										<div class="room">
 											<a  class="img d-flex justify-content-center align-items-center" 
-												style="background-image: url(images/room-1.jpg)" href=<%="rooms-single.ejs?Name="+results[index].Name%>>
+												style="background-image: url(images/room-1.jpg)" href=<%="rooms-single.ejs?Idnum="+results[index].Idnum%>>
 												<div class="icon d-flex justify-content-center align-items-center">
 													<span class="icon-search2"></span>
 												</div>
 											</a>
 											<div class="text p-3 text-center">
-												
-											<h3 class="mb-3"><a href=<%="rooms-single.ejs?Name="+results[index].Name%>></a><%= results[index].Name%></a></h3>
+											<h3 class="mb-3"><a href=<%= "rooms-single.ejs?Idnum="+ results[index].Idnum %>></a><%= results[index].Name%></a></h3>
 											<!-- <p><span class="price mr-2">$120.00</span> <span class="per">per night</span></p> -->
 											<ul class="list">
 												<li><span>대분류:</span> <%= results[index].Big_col%></li>
@@ -100,7 +99,7 @@
 												<li><span>세부주소:</span><%= results[index].County%></li>
 											</ul>
 											<hr>
-											<p class="pt-1"><a class="btn-custom" href=<%="rooms-single.ejs?Name="+results[index].Name%>> check Now <span class="icon-long-arrow-right"></span></a></p>
+											<p class="pt-1"><a class="btn-custom" href=<%="rooms-single.ejs?Idnum="+results[index].Idnum%>> check Now <span class="icon-long-arrow-right"></span></a></p>
 										</div>
 									</div>
 								</div>

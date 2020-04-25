@@ -33,9 +33,10 @@ mysqlcon.connect(function (err) {
 router.get('/',function (req, res) {
     var userid = session.user.id ? session.user.id : 'dummy'
     var querydata = url.parse(req.url, true).query;
-    var Name = querydata.Name;
+    var Idnum = querydata.Idnum;
+    
     // console.log(Name);
-        mysqlcon.query("select * from dbnwe.tour where Name = ? ", [Name],
+        mysqlcon.query("select * from dbnwe.tour where Idnum = ? ", [Idnum],
         function (err, results) {
         if (!err) {
             // console.log(results);
