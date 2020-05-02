@@ -36,13 +36,14 @@ router.get('/',function (req, res) {
     var Idnum = querydata.Idnum;
     
     // console.log(Name);
-        mysqlcon.query("select * from dbnwe.tour where Idnum = ? ", [Idnum],
+        mysqlcon.query("select * from dbnwe.tour where Idnum = ? ;\
+                        select * from dbnwe.review where tour_id = ? ;", [Idnum ,Idnum],
         function (err, results) {
         if (!err) {
             // console.log(results);
             res.render('../views/rooms-single.ejs', {
-                results: results
-                
+                results: results[0],
+                reviews: results[1]
             });
         }
         else {
