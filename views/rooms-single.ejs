@@ -64,7 +64,9 @@
       </div>
     </div>
 
-
+    <%if(dberr){ %>
+      <script>alert("리뷰 입력중 DB서버의 오류가 발생하였습니다.")</script>
+    <%}%>
     <section class="ftco-section">
       <div class="container">
         <div class="row">
@@ -74,13 +76,7 @@
           			<h2 class="mb-4"><%= results[0].Name %></h2>
           			<div class="single-slider owl-carousel">
           				<div class="item">
-          					<div class="room-img" style="background-image: url(images/room-1.jpg);"></div>
-          				</div>
-          				<div class="item">
-          					<div class="room-img" style="background-image: url(images/room-2.jpg);"></div>
-          				</div>
-          				<div class="item">
-          					<div class="room-img" style="background-image: url(images/room-3.jpg);"></div>
+          					<div class="room-img" style="background-image: url('images/a2.jpg');"></div>
           				</div>
           			</div>
           		</div>
@@ -98,71 +94,36 @@
     						</div>
     						<p><%= results[0].tourinfo %></p>
           		</div>
-          		<div class="col-md-12 room-single ftco-animate mb-5 mt-4">
-          			<h3 class="mb-4">Take A Tour</h3>
-          			<div class="block-16">
-		              <figure>
-		                <img src="images/room-4.jpg" alt="Image placeholder" class="img-fluid">
-		                <a href="https://vimeo.com/45830194" class="play-button popup-vimeo"><span class="icon-play"></span></a>
-		              </figure>
-		            </div>
-          		</div>
-
-          		<div class="col-md-12 properties-single ftco-animate mb-5 mt-4">
-          			<h4 class="mb-4">Review &amp; Ratings</h4>
-          			<div class="row">
-          				<div class="col-md-6">
-          					<form method="post" class="star-rating">
-										  <div class="form-check">
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
-												<label class="form-check-label" for="exampleCheck1">
-													<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i> 100 Ratings</span></p>
-												</label>
-										  </div>
-										  <div class="form-check">
-									      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-									      <label class="form-check-label" for="exampleCheck1">
-									    	   <p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i> 30 Ratings</span></p>
-									      </label>
-										  </div>
-										  <div class="form-check">
-									      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-									      <label class="form-check-label" for="exampleCheck1">
-									      	<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i> 5 Ratings</span></p>
-									     </label>
-										  </div>
-										  <div class="form-check">
-										    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-									      <label class="form-check-label" for="exampleCheck1">
-									      	<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i> 0 Ratings</span></p>
-									      </label>
-										  </div>
-										  <div class="form-check">
-									      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-									      <label class="form-check-label" for="exampleCheck1">
-									      	<p class="rate"><span><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i> 0 Ratings</span></p>
-										    </label>
-										  </div>
-										</form>
-          				</div>
-          			</div>
-          		</div>
-          		<div class="col-md-12 room-single ftco-animate mb-5 mt-5">
-          			<h4 class="mb-4">Reviews</h4>
-          			<div class="d-md-flex mt-5 mb-5">
-                  <ul class="list">
-	    							<li><span>id :  <%= reviews[0].user_id %></span> </li>
-	    						</ul>
-	    						<ul class="list ml-md-5">
-                    <li><span>rate:<%= reviews[0].rate %></span> </li>
-                  </ul>
-                  <ul class="list ml-md-5">
-                    <li><span>date : <%= reviews[0].date %></span> </li>
-	    						</ul>
+              <% if(loggedin) { %>
+                <div class="col-md-12 properties-single ftco-animate mb-5 mt-4" <% action="rooms-single.ejs?Idnum="+Idnum %> method="post">
+                  <h4 class="mb-4">Review &amp; Ratings</h4>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <select name="star_rating" id="star_rating" class="form-control">
+	                    	<option value="1">★</option>
+	                    	<option value="2">★★</option>
+	                      <option value="3">★★★</option>
+	                      <option value="4">★★★★</option>
+	                      <option value="5">★★★★★</option>
+	                    </select>
+                      <textarea id="comment" name="description" placeholder="리뷰를 작성해주세요." Style =" margin-top: 0px;margin-bottom: 0px;height: 122px;width: 600px;"></textarea><br>
+                      <button type="submit">submit</button>
+                    </div>
+                  </div>
                 </div>
-                <p>simple review : <%= reviews[0].review %></p>
+              <% } %>
+          		<div class="col-md-12 room-single ftco-animate mb-5 mt-5">
+                <h4 class="mb-4">Reviews</h4>
+                <%for (var index in reviews){%>
+          			<div>
+                  
+                  <a>리뷰 작성자 : <%= reviews[0].user_id %> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  평점 : <%= reviews[0].rate %></p>
+                  <p>simple review </p>
+                  <p><%= reviews[0].review %></p>
+                  <hr size="3">
+                </div>
+                <% } %>
           		</div>
-
           	</div>
           </div> <!-- .col-md-8 -->
           <div class="col-lg-4 sidebar ftco-animate">

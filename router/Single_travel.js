@@ -31,7 +31,7 @@ mysqlcon.connect(function (err) {
 // select * from review where AttractionId = ?;\
 
 router.get('/',function (req, res) {
-    var userid = session.user.id ? session.user.id : 'dummy'
+    var user_id = session.user.id ? session.user.id : 'dummy'
     var querydata = url.parse(req.url, true).query;
     var Idnum = querydata.Idnum;
     
@@ -42,14 +42,36 @@ router.get('/',function (req, res) {
         if (!err) {
             // console.log(results);
             res.render('../views/rooms-single.ejs', {
+                dberr:querydata.dberr!=null,
                 results: results[0],
-                reviews: results[1]
+                reviews: results[1],
+                loggedin: session.user.id != null && session.user.id != 'dummy',
+                user_id: session.user.id,
+                Idnum: Idnum,
+                loginfirst:querydata.loginfirst!=null
             });
         }
         else {
             console.log('Error while performing Query.', err);
         }
     })
+})
+router.post('/',function (req, res) {
+    var Idnum = querydata.Idnum;
+    var rating = $("#star_rating option").index($("#star_rating option:selected"));
+    var input = document.getElementById("comment").value;
+    var user_id = session.user.id ? session.user.id : 'dummy'
+
+    mysqlcon.query("insert into dbnwe.review (user_id,rate,review,tour_id) values(?,?,?,?);" , [user_id,rating,input,Idnum] ,
+            function(err,results){
+                if (error) {
+                    console.log("데이터베이스 입력 에러...");
+                    res.redirect('../views/rooms-single.ejs?Idnum='+Idnum+'&dberr=ture');
+                    throw error;
+                }
+        }
+    )
+    res.redirect('../views/rooms-single.ejs');
 })
 
 module.exports=router;

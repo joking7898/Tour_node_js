@@ -12,7 +12,7 @@ var MySQLStore = require('express-mysql-session')(session);
 router.use(bodyparser.urlencoded({ extended: false }))
 
 
-router.get("Register/logout", function (req, res) {
+router.get("/", function (req, res) {
     session.user.id = 'dummy'
     session.user.password = ''
     res.redirect("../views/index.ejs")

@@ -33,6 +33,7 @@ app.use('/Register',Register_router );
 
 app.use('/views', express.static(__dirname + '/public'));
 app.use('/Register', express.static(__dirname + '/Republic'));
+app.use('/views/image', express.static(__dirname + '/public'));
 
 app.set('view engine', 'ejs');
 app.get('/', function (req, res) {
