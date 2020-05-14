@@ -95,31 +95,32 @@
     						<p><%= results[0].tourinfo %></p>
           		</div>
               <% if(loggedin) { %>
-                <div class="col-md-12 properties-single ftco-animate mb-5 mt-4" <% action="rooms-single.ejs?Idnum="+Idnum %> method="post">
+                <form class="review-form" action=<%="rooms-single.ejs?Idnum="+Idnum %> method="post">
+                <div class="col-md-12 properties-single ftco-animate mb-5 mt-4" >
                   <h4 class="mb-4">Review &amp; Ratings</h4>
                   <div class="row">
                     <div class="col-md-6">
                       <select name="star_rating" id="star_rating" class="form-control">
-	                    	<option value="1">★</option>
-	                    	<option value="2">★★</option>
-	                      <option value="3">★★★</option>
-	                      <option value="4">★★★★</option>
-	                      <option value="5">★★★★★</option>
-	                    </select>
+	                    	<option value=1>★</option>
+	                    	<option value=2>★★</option>
+	                      <option value=3>★★★</option>
+	                      <option value=4>★★★★</option>
+	                      <option value=5>★★★★★</option>
+                      </select>
                       <textarea id="comment" name="description" placeholder="리뷰를 작성해주세요." Style =" margin-top: 0px;margin-bottom: 0px;height: 122px;width: 600px;"></textarea><br>
-                      <button type="submit">submit</button>
+                      <button type='submit'>작성</button>
                     </div>
                   </div>
                 </div>
+              </form>
               <% } %>
           		<div class="col-md-12 room-single ftco-animate mb-5 mt-5">
                 <h4 class="mb-4">Reviews</h4>
                 <%for (var index in reviews){%>
           			<div>
-                  
-                  <a>리뷰 작성자 : <%= reviews[0].user_id %> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  평점 : <%= reviews[0].rate %></p>
+                  <a>리뷰 작성자 : <%= reviews[index].user_id %> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  평점 : <%= reviews[index].rate %></p>
                   <p>simple review </p>
-                  <p><%= reviews[0].review %></p>
+                  <p><%= reviews[index].review %></p>
                   <hr size="3">
                 </div>
                 <% } %>
