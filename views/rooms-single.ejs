@@ -75,13 +75,15 @@
           		<div class="col-md-12 ftco-animate">
           			<h2 class="mb-4"><%= results[0].Name %></h2>
           			<div class="single-slider owl-carousel">
+                  <%for (var index in pictures){%>
           				<div class="item">
-          					<div class="room-img" style="background-image: url('images/a2.jpg');"></div>
-          				</div>
+          					<div class="room-img" style="background-image: url('<%= pictures[index].pictureslink %>');"></div>
+                  </div>
+                  <% } %>
           			</div>
           		</div>
           		<div class="col-md-12 room-single mt-4 mb-5 ftco-animate">
-    						<p><%= results[0].tourinfo %></p>
+    						<p><%= descriptions[0].description %></p>
     						<div class="d-md-flex mt-5 mb-5">
     							<ul class="list">
 	    							<li><span>Location : </span> <%= results[0].Address %></li>
@@ -92,7 +94,7 @@
 	    							<li><span>분류 :</span> <%= results[0].Mid_col %></li>
 	    						</ul>
     						</div>
-    						<p><%= results[0].tourinfo %></p>
+    						<p><%= %></p>
           		</div>
               <% if(loggedin) { %>
                 <form class="review-form" action=<%="rooms-single.ejs?Idnum="+Idnum %> method="post">

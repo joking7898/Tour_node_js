@@ -1,12 +1,15 @@
 var express = require('express')
-var router = express.Router();
 var mysql = require('mysql');
 var url = require('url')
 var bodyparser = require('body-parser')
 var passport = require('passport');
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
+const asyncify = require('express-asyncify');
+var router = asyncify(express.Router());
 router.use(bodyparser.urlencoded({ extended: false }))
+router.use(passport.initialize());
+router.use(passport.session());
 
 //db 연결
 var dbConfig = require('../dbconfig');
@@ -22,40 +25,57 @@ session.user = {
     id: 'dummy',
     password: ''
 }
-router.use(passport.initialize());
-router.use(passport.session());
+
 
 mysqlcon.connect(function (err) {
 })
 
-// select * from review where AttractionId = ?;\
-
-router.get('/',function (req, res) {
+router.get('/',function(req, res) {
     var user_id = session.user.id ? session.user.id : 'dummy'
     var querydata = url.parse(req.url, true).query;
     var Idnum = querydata.Idnum;
-    
+    var values;
     // console.log(Name);
         mysqlcon.query("select * from dbnwe.tour where Idnum = ? ;\
                         select * from dbnwe.review where tour_id = ? ;", [Idnum ,Idnum],
         function (err, results) {
-        if (!err) {
-            // console.log(results);
-            res.render('../views/rooms-single.ejs', {
-                dberr:querydata.dberr!=null,
-                results: results[0],
-                reviews: results[1],
-                loggedin: session.user.id != null && session.user.id != 'dummy',
-                user_id: session.user.id,
-                Idnum: Idnum,
-                loginfirst:querydata.loginfirst!=null
-            });
-        }
-        else {
+            if (!err){
+                mysqlcon.query("select description from dbnwe.description where Name = ? ;",[results[0][0].Name],
+                function(err,descriptions){
+                    if(!err){
+                        mysqlcon.query("select * from dbnwe.pictures where Name = ? ;",[results[0][0].Name],
+                        function(err,pictures){
+                            if (!err) {
+                                res.render('../views/rooms-single.ejs', {
+                                    dberr:querydata.dberr!=null,
+                                    pictures :pictures,
+                                    results: results[0],
+                                    reviews: results[1],
+                                    descriptions : descriptions,
+                                    loggedin: session.user.id != null && session.user.id != 'dummy',
+                                    user_id: session.user.id,
+                                    Idnum: Idnum,
+                                    loginfirst:querydata.loginfirst!=null,
+                                });
+                            }
+                            // console.log(results); 
+                            else {
+                                console.log('Error while performing Query.', err);
+                            }
+                        })
+                    }
+                    else {
+                        console.log('Error while performing Query.', err);
+                    } 
+                })
+            }
+            // console.log(results); 
+            else {
             console.log('Error while performing Query.', err);
-        }
-    })
-})
+         }
+        } 
+    )})
+
 router.post('/',function (req, res) {
     var querydata = url.parse(req.url, true).query;
     var Idnum = querydata.Idnum;
