@@ -36,14 +36,14 @@
 	      </button>
 		  <div class="user-access">
 			<%if(loggedin){%>
-				<li id="login_li"><a href="#" id="current"><%=user_id%> 님</a>
+				<li id="login_li"><a href="#" id="current"><%=user_id%> 님 환영합니다.</a>
 					<ul>
-						<li><a href="/views/Register/Modify.ejs">회원정보 수정</a></li>
-						<li><a href="/views/logout">로그아웃</a></li>
+						<li><a href="/Register/Modify.ejs">회원정보 수정</a></li>
+						<li><a href="/Register/logout">로그아웃</a></li>
 					</ul>
 				</li>
 			<%}else{%>
-				<a href="/views/Register/Login.ejs?" class="primary-btn">로그인</a>
+				<a href="/Register/Login.ejs" class="primary-btn">로그인</a>
 			<%}%>
 		</div>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
@@ -80,18 +80,26 @@
     		<div class="row">
 	        <div class="col-lg-9">
 		    		<div class="row">
-						<% for (var index = (pageNum - 1) * 9; index < results.length; index++){ if (index >= pageNum*9) break;%>
+						<% 
+							for (var index = (pageNum - 1) * 9; index < results.length; index++){
+							var img =  results[index].tourinfo;
+							if(img == null){
+								img = "images/room-1.jpg";
+							}
+							if (index >= pageNum*9) 
+								break;
+						%>
 								<div class="col-sm col-md-6 col-lg-4 ftco-animate">
 										<div class="room">
 											<a  class="img d-flex justify-content-center align-items-center" 
-												style="background-image: url(images/room-1.jpg)" href=<%="rooms-single.ejs?Idnum="+results[index].Idnum%>>
+												style="background-image: url(<%=img%>)" 
+												href=<%="rooms-single.ejs?Idnum="+results[index].Idnum%>>
 												<div class="icon d-flex justify-content-center align-items-center">
 													<span class="icon-search2"></span>
 												</div>
 											</a>
 											<div class="text p-3 text-center">
 											<h3 class="mb-3"><a href=<%= "rooms-single.ejs?Idnum="+ results[index].Idnum %>></a><%= results[index].Name%></a></h3>
-											<!-- <p><span class="price mr-2">$120.00</span> <span class="per">per night</span></p> -->
 											<ul class="list">
 												<li><span>대분류:</span> <%= results[index].Big_col%></li>
 												<li><span>소분류:</span> <%= results[index].Mid_col%></li>
@@ -103,7 +111,7 @@
 										</div>
 									</div>
 								</div>
-							<%}%>
+						<%	}  %>
 					</div>
 					<div class="col-lg-12 text-right" style="text-align: center;">
 						<div class="pagination-num" id="paging" style ="font-size: 20px; text-align: center"></div>

@@ -29,6 +29,19 @@ app.use('/views/rooms-single.ejs',Single_travel);
 var Register_router = require('./router/Register_user.js')
 app.use('/Register',Register_router );
 
+var about_router = require('./router/about.js')
+app.use('/views/about.ejs',about_router );
+
+var blog_router = require('./router/blog.js')
+app.use('/views/blog.ejs',blog_router );
+
+var contact_router = require('./router/contact.js')
+app.use('/views/contact.ejs',contact_router );
+
+var alter_router = require('./router/alter.js')
+app.use('/views/alter.ejs',alter_router );
+
+
 //====================================================
 
 app.use('/views', express.static(__dirname + '/public'));

@@ -37,7 +37,8 @@ router.get('/',function(req, res) {
     var values;
     // console.log(Name);
         mysqlcon.query("select * from dbnwe.tour where Idnum = ? ;\
-                        select * from dbnwe.review where tour_id = ? ;", [Idnum ,Idnum],
+                        select * from dbnwe.review where tour_id = ? ;\
+                        select auth from dbnwe.userinfo where id = ?;", [Idnum ,Idnum,user_id],
         function (err, results) {
             if (!err){
                 mysqlcon.query("select description from dbnwe.description where Name = ? ;",[results[0][0].Name],
@@ -51,6 +52,7 @@ router.get('/',function(req, res) {
                                     pictures :pictures,
                                     results: results[0],
                                     reviews: results[1],
+                                    auth: results[2],
                                     descriptions : descriptions,
                                     loggedin: session.user.id != null && session.user.id != 'dummy',
                                     user_id: session.user.id,
@@ -83,19 +85,25 @@ router.post('/',function (req, res) {
     var stars = req.body.star_rating;
     var description = req.body.description;
     var user_id = session.user.id ? session.user.id : 'dummy'
-
-    console.log(stars);
-    mysqlcon.query('insert into dbnwe.review (user_id,rate,review,tour_id) values(?,?,?,?);' , [user_id,stars,description,Idnum] ,
-            function(err,results){
-                if (!err) {
-                    res.redirect('../views/rooms-single.ejs?Idnum='+Idnum);
-                }
-                else {
-                    console.log("데이터베이스 입력 에러...");
-                    res.redirect('../views/rooms-single.ejs?Idnum='+Idnum+'&dberr=ture');
-                    throw error;
-                }
-            })
+    var Name = req.body.Name;
+    if(Name != null){
+        res.redirect('../views/rooms.ejs?Name='+Name);
+    }
+    else{
+        console.log(stars);
+        mysqlcon.query('insert into dbnwe.review (user_id,rate,review,tour_id) values(?,?,?,?);' , [user_id,stars,description,Idnum] ,
+                function(err,results){
+                    if (!err) {
+                        res.redirect('../views/rooms-single.ejs?Idnum='+Idnum);
+                    }
+                    else {
+                        console.log("데이터베이스 입력 에러...");
+                        res.redirect('../views/rooms-single.ejs?Idnum='+Idnum+'&dberr=ture');
+                        throw error;
+                    }
+                })
+        }
     })
+    
 
 module.exports=router;
