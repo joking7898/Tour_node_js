@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
   <head>
-    <title>Trip Information</title>
+    <title>TripDB-for your Trip</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -49,13 +49,10 @@
 			</div>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="index.ejs" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="rooms.ejs?" class="nav-link">SpotList</a></li>
-	          <li class="nav-item"><a href="restaurant.ejs?" class="nav-link">Restaurant</a></li>
-	          <li class="nav-item"><a href="about.ejs?" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="blog.ejs?" class="nav-link">Blog</a></li>
-			  <li class="nav-item"><a href="contact.ejs?" class="nav-link">Contact</a></li>
-			  
+				<li class="nav-item"><a href="index.ejs" class="nav-link">Home</a></li>
+				<li class="nav-item active"><a href="rooms.ejs" class="nav-link">Attractions</a></li>
+				<li class="nav-item"><a href="about.ejs" class="nav-link">About</a></li>
+				<li class="nav-item"><a href="contact.ejs" class="nav-link">Contact</a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -156,7 +153,7 @@
 	        			</div>
 	        			<div class="col-md d-flex">
 	        				<div class="form-group d-flex align-self-stretch">
-			              <input type="submit" value="Check Availability" class="btn btn-primary py-3 px-4 align-self-stretch">
+			              <input type="submit" value="검색" class="btn btn-primary py-3 px-4 align-self-stretch">
 			            </div>
 	        			</div>
 	        		</div>
@@ -269,7 +266,7 @@
     						<h3 class="mb-3"><a href="rooms.ejs"><%= results[0].Small_col%></a></h3>
     						<p><span class="price mr-2"><%= results[0].counts%></span> <span class="per">개의 관광지</span></p>
     						<hr>
-    						<p class="pt-1"><a href="room-single.ejs" class="btn-custom">View Room Details <span class="icon-long-arrow-right"></span></a></p>
+    						<p class="pt-1"><a href="room-single.ejs" class="btn-custom">관광지 더보기 <span class="icon-long-arrow-right"></span></a></p>
     					</div>
     				</div>
     			</div>
@@ -284,7 +281,7 @@
     						<h3 class="mb-3"><a href="rooms.ejs"><%= results[1].Small_col%></a></h3>
     						<p><span class="price mr-2"><%= results[1].counts%></span> <span class="per">개의 관광지</span></p>
     						<hr>
-    						<p class="pt-1"><a href="room-single.ejs" class="btn-custom">View Room Details <span class="icon-long-arrow-right"></span></a></p>
+    						<p class="pt-1"><a href="room-single.ejs" class="btn-custom">관광지 더보기 <span class="icon-long-arrow-right"></span></a></p>
     					</div>
     				</div>
     			</div>
@@ -299,7 +296,7 @@
     						<h3 class="mb-3"><a href="rooms.ejs"><%= results[2].Small_col%></a></h3>
     						<p><span class="price mr-2"><%= results[2].counts%></span> <span class="per">개의 관광지</span></p>
     						<hr>
-    						<p class="pt-1"><a href="room-single.ejs" class="btn-custom">View Room Details <span class="icon-long-arrow-right"></span></a></p>
+    						<p class="pt-1"><a href="room-single.ejs" class="btn-custom">관광지 더보기 <span class="icon-long-arrow-right"></span></a></p>
     					</div>
     				</div>
     			</div>
@@ -314,7 +311,7 @@
     						<h3 class="mb-3"><a href="rooms.ejs"><%= results[3].Small_col%></a></h3>
     						<p><span class="price mr-2"><%= results[3].counts%></span> <span class="per">개의 관광지</span></p>
     						<hr>
-    						<p class="pt-1"><a href="room-single.ejs" class="btn-custom">View Room Details <span class="icon-long-arrow-right"></span></a></p>
+    						<p class="pt-1"><a href="room-single.ejs" class="btn-custom">관광지 더보기 <span class="icon-long-arrow-right"></span></a></p>
     					</div>
     				</div>
     			</div>
@@ -329,7 +326,7 @@
     						<h3 class="mb-3"><a href="rooms.ejs"><%= results[4].Small_col%></a></h3>
     						<p><span class="price mr-2"><%= results[4].counts%></span> <span class="per">개의 관광지</span></p>
     						<hr>
-    						<p class="pt-1"><a href="room-single.ejs" class="btn-custom">View Room Details <span class="icon-long-arrow-right"></span></a></p>
+    						<p class="pt-1"><a href="room-single.ejs" class="btn-custom">관광지 더보기 <span class="icon-long-arrow-right"></span></a></p>
     					</div>
     				</div>
     			</div>
@@ -344,7 +341,7 @@
     						<h3 class="mb-3"><a href="rooms.ejs"><%= results[5].Small_col%></a></h3>
     						<p><span class="price mr-2"><%= results[5].counts%></span> <span class="per">개의 관광지</span></p>
     						<hr>
-    						<p class="pt-1"><a href="room-single.ejs" class="btn-custom">View Room Details <span class="icon-long-arrow-right"></span></a></p>
+    						<p class="pt-1"><a href="room-single.ejs" class="btn-custom">관광지 더보기 <span class="icon-long-arrow-right"></span></a></p>
     					</div>
     				</div>
     			</div>

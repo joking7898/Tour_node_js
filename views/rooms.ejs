@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Deluxe - Free Bootstrap 4 Template by Colorlib</title>
+    <title>TripDB-for your Trip</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -30,7 +30,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.ejs">Deluxe</a>
+	      <a class="navbar-brand" href="index.ejs">TripDB</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -48,12 +48,10 @@
 		</div>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="index.ejs" class="nav-link">Home</a></li>
-	          <li class="nav-item active"><a href="rooms.ejs" class="nav-link">Rooms</a></li>
-	          <li class="nav-item"><a href="restaurant.ejs" class="nav-link">Restaurant</a></li>
-	          <li class="nav-item"><a href="about.ejs" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="blog.ejs" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="contact.ejs" class="nav-link">Contact</a></li>
+				<li class="nav-item"><a href="index.ejs" class="nav-link">Home</a></li>
+				<li class="nav-item active"><a href="rooms.ejs" class="nav-link">Attractions</a></li>
+				<li class="nav-item"><a href="about.ejs" class="nav-link">About</a></li>
+				<li class="nav-item"><a href="contact.ejs" class="nav-link">Contact</a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -66,7 +64,7 @@
         <div class="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
           <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
           	<div class="text">
-	            <p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.ejs">Home</a></span> <span>About</span></p>
+	            <p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.ejs">Home</a></span> <span>SpotList</span></p>
 	            <h1 class="mb-4 bread">Trvel Spots</h1>
             </div>
           </div>
@@ -84,7 +82,7 @@
 							for (var index = (pageNum - 1) * 9; index < results.length; index++){
 							var img =  results[index].tourinfo;
 							if(img == null){
-								img = "images/room-1.jpg";
+								img = "images/noimg2.png";
 							}
 							if (index >= pageNum*9) 
 								break;
@@ -175,7 +173,7 @@
 					<form action="rooms.ejs" class="search-form" method="post">
 					  <div class="form-group">
 						<span class="icon fa fa-search"></span>
-						<input name='Name' type="text" class="form-control" placeholder="Type a keyword and hit enter">
+						<input name='Name' type="text" class="form-control" placeholder="검색어 입력">
 					  </div>
 					</form>
 				  </div>

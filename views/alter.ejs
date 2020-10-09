@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Deluxe - Free Bootstrap 4 Template by Colorlib</title>
+    <title>TripDB-for your Trip</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -63,29 +63,30 @@
         </div>
       </div>
     </div>
-
+    <section style="padding-top: 30px;padding-left: 200px;">
+      <div style="right: 100px;">
         <div class="row block-9">
           <div class="">
-            <form class="review-form" >
-            <form class="bg-white p-5 contact-form" action=<%="rooms-single.ejs?Idnum="+Idnum %> method="post">
+            <form class="review-form" action=<%="alter.ejs?Idnum="+Idnum %> method="post" >
+            <form class="bg-white p-5 contact-form">
               <p>Name</p>
               <div class="form-group">
-                <input id="name" type="text" class="form-control-1" placeholder="Your Name" width="500px">
+                <input name="name" id="name" type="text" class="form-control-1" placeholder="Your Name" width="500px">
               </div>
               <p>Tel</p>
               <div class="form-group">
-                <input id="tel" type="text" class="form-control-1" placeholder="Your Name">
+                <input name="tel" id="tel" type="text" class="form-control-1" placeholder="Your Name">
               </div>
               <p>Address</p>
               <div class="form-group">
-                <input id="address" type="text" class="form-control-1" placeholder="Your Email">
+                <input name="address" id="address" type="text" class="form-control-1" placeholder="Your Email">
               </div>
               <p>discription</p>
               <div class="form-group">
-                <textarea name="" id="disc" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                <textarea name="disc" id="disc" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
               </div>
               <div class="form-group">
-                <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                <input type="submit" value="Change value" class="btn btn-primary py-3 px-5">
               </div>
             </form>
           </div>
@@ -93,8 +94,6 @@
         </div>
       </div>
     </section>
-
-
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">
@@ -187,7 +186,7 @@
           $('#tel').val("<%=result[0].Tel%>");
         });
         $(document).ready(function() {
-          $('#address').val("<%=result[0].address%>");
+          $('#address').val("<%=result[0].Address%>");
         });
         $(document).ready(function() {
           $('#disc').val("<%=descriptions[0].description%>");

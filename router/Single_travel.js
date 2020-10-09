@@ -34,7 +34,7 @@ router.get('/',function(req, res) {
     var user_id = session.user.id ? session.user.id : 'dummy'
     var querydata = url.parse(req.url, true).query;
     var Idnum = querydata.Idnum;
-    var values;
+    var auth;
     // console.log(Name);
         mysqlcon.query("select * from dbnwe.tour where Idnum = ? ;\
                         select * from dbnwe.review where tour_id = ? ;\
@@ -47,12 +47,13 @@ router.get('/',function(req, res) {
                         mysqlcon.query("select * from dbnwe.pictures where Name = ? ;",[results[0][0].Name],
                         function(err,pictures){
                             if (!err) {
+                                console.log(results[2][0]);
                                 res.render('../views/rooms-single.ejs', {
                                     dberr:querydata.dberr!=null,
                                     pictures :pictures,
                                     results: results[0],
                                     reviews: results[1],
-                                    auth: results[2],
+                                    auth: results[2][0] != undefined && results[2][0].auth == 'authority',
                                     descriptions : descriptions,
                                     loggedin: session.user.id != null && session.user.id != 'dummy',
                                     user_id: session.user.id,
@@ -81,12 +82,16 @@ router.get('/',function(req, res) {
 router.post('/',function (req, res) {
     var querydata = url.parse(req.url, true).query;
     var Idnum = querydata.Idnum;
+    var Alter = querydata.Alter !=null && querydata.Alter != 'undefined';
     // 별점 관련 부분 수정예정.
     var stars = req.body.star_rating;
     var description = req.body.description;
     var user_id = session.user.id ? session.user.id : 'dummy'
-    var Name = req.body.Name;
-    if(Name != null){
+    var Name = req.body.Name != null && req.body.Name != 'undefined';
+    if(Alter){
+        res.redirect('../views/alter.ejs?Idnum='+Idnum);
+    }
+    if(Name){
         res.redirect('../views/rooms.ejs?Name='+Name);
     }
     else{

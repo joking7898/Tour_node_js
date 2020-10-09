@@ -26,7 +26,6 @@ session.user = {
     password: ''
 }
 
-
 mysqlcon.connect(function (err) {
 })
 
@@ -36,17 +35,19 @@ router.get('/',function (req,res){
     mysqlcon.query("select * from dbnwe.tour where Idnum = ? ;",[Idnum],
     function(err,result) {
         if(!err){
-            console.log(result[0].Name)
+            // console.log(result[0].Name)
             mysqlcon.query("select description from dbnwe.description where Name = ? ;",[result[0].Name],
                 function(err,descriptions){
                     res.render('../views/alter.ejs',{
                         result:result,
-                        descriptions:descriptions,  
+                        descriptions:descriptions,
+                        Idnum : Idnum  
                     })
                 });
         }
     });
 }) 
+
 router.post('/',function (req,res){
     var querydata = url.parse(req.url, true).query;
     var Idnum = querydata.Idnum;
@@ -54,13 +55,15 @@ router.post('/',function (req,res){
     var tel = req.body.tel;
     var address = req.body.address;
     var disc = req.body.disc;
-    mysqlcon.query("update dbnwe.tour set Name=?,Tel=?,Address=? where Idnum=? ;",[name,tel,address,Idnum],
-    function(err,result) {
+    var sql = 'update dbnwe.tour set Name=?,Tel=?,Address=? where Idnum=?;'
+    mysqlcon.query(sql,[name,tel,address,Idnum],function(err,result) {
         if(!err){
-            console.log(result[0].Name)
-            mysqlcon.query("update dbnwe.description set description=? where Name=?;",[disc,name],
-                function(err,descriptions){
-                    res.redirect('../views/rooms-single.ejs?Idnum='+Idnum);
+            console.log(sql)
+            var sql2='update dbnwe.description set description=?where Name=?;'
+            mysqlcon.query(sql2,[disc,name],function(err,descriptions){
+                    if(!err){
+                        res.redirect('../views/rooms-single.ejs?Idnum='+Idnum);
+                    }
                 });
         }
     });
