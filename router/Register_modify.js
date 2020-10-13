@@ -32,7 +32,7 @@ router.post("/", function (req, res) {
             if (req.body.new_pass != req.body.re_pass) {
                 res.redirect("../Modify.ejs?insertpassagain=true")
             }
-            mysqlcon.query("update user set password = ? where id=?",
+            mysqlcon.query("update user set password = ? where user_id=?",
                          [req.body.new_pass, session.user.id], function (err, results) {
                 if (err)
                     console.log("DB query error : ", err)
@@ -41,7 +41,7 @@ router.post("/", function (req, res) {
             })
         }
         else if (req.body.choice == '회원 탈퇴') {
-            mysqlcon.query("delete from userinfo where id=?", [session.user.id], function (err, results) {
+            mysqlcon.query("delete from userinfo where user_id=?", [session.user.id], function (err, results) {
                 if (err)
                     console.log("DB query error : ", err)
                 else {

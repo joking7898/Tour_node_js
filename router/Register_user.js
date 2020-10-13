@@ -57,7 +57,7 @@ router.post("/", function (req, res, next) {
             if (results.length == 0) {
                 if (pass == repass) {
                     mysqlcon.query(
-                        `INSERT INTO userinfo (id, email, password, auth) VALUES (?,?,?,?)`,
+                        `INSERT INTO userinfo (user_id, email, password, auth) VALUES (?,?,?,?)`,
                         [req.body.id, req.body.email, req.body.pass, 'user'],
                         function (error, result) {
                             if (error) {

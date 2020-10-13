@@ -37,8 +37,8 @@ router.get('/',function(req, res) {
     var auth;
     // console.log(Name);
         mysqlcon.query("select * from dbnwe.tour where Idnum = ? ;\
-                        select * from dbnwe.review where tour_id = ? ;\
-                        select auth from dbnwe.userinfo where id = ?;", [Idnum ,Idnum,user_id],
+                        select * from dbnwe.review where Idnum = ? ;\
+                        select auth from dbnwe.userinfo where user_id = ?;", [Idnum ,Idnum,user_id],
         function (err, results) {
             if (!err){
                 mysqlcon.query("select description from dbnwe.description where Name = ? ;",[results[0][0].Name],
@@ -96,7 +96,7 @@ router.post('/',function (req, res) {
     }
     else{
         console.log(stars);
-        mysqlcon.query('insert into dbnwe.review (user_id,rate,review,tour_id) values(?,?,?,?);' , [user_id,stars,description,Idnum] ,
+        mysqlcon.query('insert into dbnwe.review (user_id,rate,review,Idnum) values(?,?,?,?);' , [user_id,stars,description,Idnum] ,
                 function(err,results){
                     if (!err) {
                         res.redirect('../views/rooms-single.ejs?Idnum='+Idnum);

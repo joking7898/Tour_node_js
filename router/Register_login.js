@@ -36,17 +36,17 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
     var id = req.body.id;
     var password = req.body.your_pass;
-    mysqlcon.query("select * from userinfo where id = ? and password = ?", [id, password],
+    mysqlcon.query("select * from userinfo where user_id = ? and password = ?", [id, password],
                      function (err, results) {
         if (!err && results[0] != undefined) {
             session.user = {
-                "id": results[0].id,
+                "id": results[0].user_id,
                 "password": results[0].password
             }
             res.redirect("../views/index.ejs?#");
         }
         else {
-            res.redirect("../views/Register/Login.ejs?tryagain=true");
+            res.redirect("Login.ejs?tryagain=true");
             console.log('Error while performing Query in login.', err);
         }
     })
